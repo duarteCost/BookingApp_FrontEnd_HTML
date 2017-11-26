@@ -1,18 +1,24 @@
+<head>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="../js/booking.js"></script>
+</head>
+<body>
 <h2 class="page-header">Reservar sala</h2>
-<form method="post" action="/users/register">
-   <div class="form-group">
-    <label>Data de ínicio</label>
-    <input type="datetime-local" class="form-control" placeholder="Data de início" name="startTime">
-  </div>
-  <div class="form-group">
-    <label>Data de fim</label>
-    <input type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime">
-  </div>
-  <div class="form-group">
-    <label>Description</label>
-    <input type="text" class="form-control" placeholder="Descrição da reserva" name="description">
-  </div>
-  	<input type="hidden" name="userId" value="1"> <!--tem de vir do server-->
-  	<input type="hidden" name="roomId" value="1"> <!--tem de vir do server-->
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+    <form id = "addBooking">
+        <div class="form-group">
+            <label>Data de ínicio</label>
+            <input type="datetime-local" class="form-control" placeholder="Data de início" name="startTime">
+        </div>
+        <div class="form-group">
+            <label>Data de fim</label>
+            <input type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="Descrição da reserva" name="description">
+        </div>
+        <input type="hidden" name="userId" value="1"> <!--tem de vir do server-->
+        <input type="hidden" name="roomId" value="1"> <!--tem de vir do server-->
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</body>
