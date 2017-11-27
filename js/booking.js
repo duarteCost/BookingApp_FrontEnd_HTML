@@ -1,32 +1,60 @@
 function get_all_booking(){
 	return $.ajax({
-	    url: "http:/127.0.0.1:5000/bookings ",
+	    url: "http://127.0.0.1:5000/bookings/2 ",
 	    method: "GET",
 	    data: true    
 	});
 
 }
 
+function showUserBookings(data) {
+    $.each( data, function( key, value ) {
+        $("#userBookings").append("<label>Descrição: </label><label>'+value+'</label>");
+    });
+}
+
+var getUserBookings;
 
 
 $( document ).ready(function() {
 
+
+
 	$.support.cors = true;
 
-	$( "#bookingCreate" ).click(function(e)
+	/*$( "#bookingCreate" ).click(function(e)
 	{
-	  $("#dinamicContent").load("bookingForm.html");
-	  e.preventDefault();
+
+          e.preventDefault();
+          $("#dinamicContent").load("bookingForm.html", function() {
+          });
+
+
 	});
 
 
     $( "#showBookings" ).click(function(e)
     {
-        $("#dinamicContent").load("showBookings.html");
         e.preventDefault();
+        $.when($("#dinamicContent").load("showBookings.html")).then(function() {
+            $.when(get_all_booking()).then(function(data) {
+                getUserBookings = data;
+                $("#all").html(getUserBookings);
+                showUserBookings(getUserBookings);
+                console.log(data);
+                //location.reload();
+            });
+        });
 
-        //$("#all").val("hello");
-    });
+    });*/
+
+
+
+
+
+
+
+
 
     $('#addBooking').submit(function (e) {
         e.preventDefault();
