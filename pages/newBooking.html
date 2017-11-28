@@ -1,25 +1,27 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-
+<!--<head>
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="../js/booking.js"></script>
-    <!--<script src="../js/getBookings.js"></script>
+    <script src="../js/newBooking.js"></script>
 </head>
 <body>
-    <h2 class="page-header">Neste momento as suas reservas são as seguintes</h2>
-    <div id = "userBookings">
-
-    </div>
-    <label>Descrição: </label><label id = "description"></label>
-    <br>
-    <label>Data de início: </label><label id = "startTime"></label>
-    <br>
-    <label>Data de fim: </label><label id = "endTime"></label>
-    <br>
-</body>
-</html>-->
-
+<h2 class="page-header">Reservar sala</h2>
+    <form id = "addBooking">
+        <div class="form-group">
+            <label>Data de ínicio</label>
+            <input type="datetime-local" class="form-control" placeholder="Data de início" name="startTime">
+        </div>
+        <div class="form-group">
+            <label>Data de fim</label>
+            <input type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="Descrição da reserva" name="description">
+        </div>
+        <input type="hidden" name="userId" value="1"> <!--tem de vir do server
+        <input type="hidden" name="roomId" value="1"> <!--tem de vir do server
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</body>-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -56,12 +58,10 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="../js/booking.js"></script>
+    <script src="../js/newBooking.js"></script>
 
 </head>
-
 <body>
-
 <script src="../vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -78,9 +78,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="../dist/js/sb-admin-2.js"></script>
 
-
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation"  >
         <div class="navbar-header">
@@ -89,30 +87,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-
             </button>
-
-
-
+            <a class="navbar-brand" href="index.html">
+                <span><img style="height: 100%; padding: 0px; width: auto;" src="../images/original-logo.png"/></span>
+                <span>Booking Room App</span>
+            </a>
         </div>
-
         <!-- /.navbar-header -->
-
-        <ul class="nav navbar-top-links navbar-right" >
+        <ul class="nav navbar-top-links navbar-right">
             <!-- /.dropdown -->
-
-
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
-                    <li class="divider"></li>
+                    <!--<li class="divider"></li>-->
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-envelope fa-fw"></i> Duarte Costa reservou a sala 10 no andar 1
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-envelope fa-fw"></i> Description
+                                <span class="pull-right text-muted small">Time Left</span>
                             </div>
                         </a>
                     </li>
@@ -122,14 +116,10 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i><span id="username"> 2012813 </span><i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
+                    <!--<li class="divider"></li>-->
                     <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
@@ -138,13 +128,12 @@
             <!-- /.dropdown -->
         </ul>
         <!-- /.navbar-top-links -->
-
         <div class="navbar-default sidebar" role="navigation" >
             <div class="sidebar-nav navbar-collapse" >
                 <ul  class="nav" id="side-menu">
-                    <div style="float: left; margin-left: 10%;">
-                        <a href="index.html"><img style = "width: 85%; margin:10% 5% 10% 0%; float: left; " src="../images/uma_logo.png"></a>
-                    </div>
+                    <!--<div style="float: left; margin-left: 10%;">-->
+                    <!--<a href="index.html"><img style = "width: 85%; margin:10% 5% 10% 0%; float: left; " src="../images/uma_logo.png"></a>-->
+                    <!--</div>-->
 
                     <li class="sidebar-search">
                         <div class="input-group custom-search-form">
@@ -158,44 +147,24 @@
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="index.html">Dashboard</a>
+                        <a href="index.html">Home</a>
                     </li>
                     <li>
                         <a href="#">Salas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="Rooms/rooms_-3.html">Andar -3</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_-2.html">Andar -2</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_-1.html">Andar -1</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_0.html">Andar 0</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_1.html">Andar 1</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_2.html">Andar 2</a>
-                            </li>
-                            <li>
-                                <a href="Rooms/rooms_3.html">Andar 3</a>
-                            </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
 
                     <li>
-                        <a href="bookings.html">Reservas<span class="fa arrow"></span></a>
+                        <a href="newBooking.html">Reservas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a id = "bookingCreate">Criar reserva</a>
+                                <a  href="newBooking.html" id = "bookingCreate">Criar reserva</a>
                             </li>
                             <li>
-                                <a id = "showBookings">Ver reservas</a>
+                                <a href="getBookings.html" id = "showBookings">Ver reservas</a>
                             </li>
                         </ul>
 
@@ -208,18 +177,26 @@
     </nav>
 
     <div id="page-wrapper" >
-        <div id="dinamicContent" class="row" >
-
+        <div id="dynamic-content" class="row" >
+            <h2 class="page-header">Reservar sala</h2>
+            <form id = "addBooking">
+                <div class="form-group">
+                    <label>Data de ínicio</label>
+                    <input type="datetime-local" class="form-control" placeholder="Data de início" name="startTime">
+                </div>
+                <div class="form-group">
+                    <label>Data de fim</label>
+                    <input type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" class="form-control" placeholder="Descrição da reserva" name="description">
+                </div>
+                <input type="hidden" name="userId" value="1"> <!--tem de vir do server-->
+                <input type="hidden" name="roomId" value="1"> <!--tem de vir do server-->
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div>
     </div>
-    <!-- /#page-wrapper -->
-
 </div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-
-
 </body>
-
-</html>
