@@ -47,12 +47,13 @@
                 </div>
                 <div class="form-group password">
                     <label><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                    <input  type="password" class="form-control password-validation form-element" name="password" placeholder="Password" data-validation="false" required>
+                    <input  type="password" class="form-control password-validation form-element" name="password" placeholder="Password" data-validation="false" minlength="6" required>
                 </div>
                 <div class="form-group confirm-password">
                     <label><span class="glyphicon glyphicon-eye-open"></span> Confirm Password</label>
                     <input  type="password" class="form-control password-confirmation form-element" name="confirm-password" placeholder="Confirm Password" data-validation="false" required>
                 </div>
+                <p id="error-message"></p>
                 <br>
                 <button type="submit" class="btn btn-default btn-danger btn-block submit-btn signup-btn"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Signup </button>
                 <!--<input type="submit" class="submit-btn btn btn-primary btn-danger form-element" value="Signup"> -->

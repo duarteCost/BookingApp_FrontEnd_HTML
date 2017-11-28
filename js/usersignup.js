@@ -46,6 +46,7 @@ $(document).ready(function(){
                 location.replace('login.html')
             },
             error: function (data) {
+                $('#error-message').html('O utilizador já existe.');
                 console.log('An error occurred.');
                 console.log(data);
             }
