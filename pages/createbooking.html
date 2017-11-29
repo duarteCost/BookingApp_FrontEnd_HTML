@@ -122,14 +122,6 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="#">Salas<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-
-                    <li>
                         <a href="createbooking.html">Reservas<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -151,23 +143,35 @@
     <div id="page-wrapper" >
         <div id="dynamic-content" class="row" >
             <h2 class="page-header">Reservar sala</h2>
-            <form id = "addBooking">
-                <div class="form-group">
-                    <label>Data de ínicio</label>
-                    <input type="datetime-local" class="form-control" placeholder="Data de início" name="startTime">
-                </div>
-                <div class="form-group">
-                    <label>Data de fim</label>
-                    <input type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input type="text" class="form-control" placeholder="Descrição da reserva" name="description">
-                </div>
-                <input type="hidden" name="userId" value="1"> <!--tem de vir do server-->
-                <input type="hidden" name="roomId" value="1"> <!--tem de vir do server-->
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            <div id = "addBooking">
+                <form id = "addBookingForm">
+                    <div class="form-group">
+                        <label>Data de ínicio</label>
+                        <input id = "startTime" type="datetime-local" class="form-control" placeholder="Data de início" name="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de fim</label>
+                        <input id = "endTime" type="datetime-local" class="form-control" placeholder="Data de fim" name="endTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input id = "description" type="text" class="form-control" placeholder="Descrição da reserva" name="description" required>
+                    </div>
+
+
+                    <input type="hidden" name="userId" value="1"> <!--tem de vir do server-->
+                    <input type="hidden" name="roomId" value="1"> <!--tem de vir do server-->
+                    <!--<button type="submit" class="btn btn-default">Escolher sala</button>-->
+                    <button id = "chooseRoom" type="submit" class="btn btn-default">Escolher sala</button>
+                </form>
+            </div>
+
+            <!--div for booking confirmation-->
+            <div id ="bookingConfirmation">
+
+            </div>
+
+
         </div>
     </div>
 </div>

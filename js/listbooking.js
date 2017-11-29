@@ -1,6 +1,6 @@
 function get_all_booking(){
     return $.ajax({
-        url: "http://127.0.0.1:5000/bookings/1 ",
+        url: "http://127.0.0.1:5000/bookings/2 ",
         method: "GET",
         data: true
     });
@@ -19,6 +19,7 @@ function showUserBookings(data) {
         //$("#userBookings").append("<br>");
         $("#userBookings").append("<li class= 'list-group-item'><label>Data de fim: </label><span>"+value.endTime+"</span></li>");
         $("#userBookings").append("</ul>");
+        $("#userBookings").append("<br>");
         $("#userBookings").append(" <div class='btn-group' role='group' aria-label='Basic example'><button id = "+value._id.$oid+" type='button' class='btn btn-secondary'>Eliminar</button></div>");
         $("#userBookings").append("<br>");
         $("#userBookings").append("<br>");
@@ -52,7 +53,6 @@ $( document ).ready(function() {
                     location.reload();
                 }
             });
-            delete_Booking(event.target.id);
         });
         //location.reload();
     });
