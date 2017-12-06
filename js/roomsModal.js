@@ -1,9 +1,29 @@
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 //get available rooms in one floor
 function get_floor_available_rooms(floor){
     return $.ajax({
-        url: "http://127.0.0.1:5001/rooms/floor/"+floor,
+        url: "http://127.0.0.1:5004/rooms/floor/"+floor,
         method: "GET",
-        data: true
+        data: true,
+        beforeSend: function (xhr) {
+            /* Authorization header */
+            xhr.setRequestHeader("Authorization", getCookie("token"));
+        }
     });
 }
 
@@ -26,7 +46,25 @@ function list_room_per_floor(data) {
 
 }
 
+function modal_validation(startTime,endTime, descritption) {
+
+    if(startTime=='' || endTime == ''){
+        alert("O data e o tempo de inicio/fim de macarcação devem ser definidos!");
+        location.reload();
+    }
+    else if (descritption == ''){
+        alert("A descrição deve ser definida!");
+        location.reload();
+    }
+}
+
 $( document ).ready(function() {
+
+    /*if(getCookie("token") === '')
+    {
+        alert("Para aceder a esta página é necessário realizar o Login");
+        location.replace('login.html');
+    }*/
 
     var data_rooms;
     //if user click "Escolher sala" in bookings form
@@ -34,8 +72,8 @@ $( document ).ready(function() {
         var startTime = $("#startTime").val();
         var endTime = $("#endTime").val();
         var descritption = $("#description").val();
+        modal_validation(startTime,endTime, descritption);
         $("#timeInterval").html("Salas disponíveis entre "+startTime+" e às "+endTime+".");
-        $("#bookingDescription").html(descritption);
     });
 
     //inside of modal when user choose a pretended floor
@@ -63,7 +101,7 @@ $( document ).ready(function() {
         $("#showRoomResume").append("<br>");
         $("#chooseRoom").remove();
         $("#roomId").val(room._id.$oid);
-        $("#showRoomResume").append("<input type='submit' class='btn btn-primary' value='Comfirmar'>");
+        $("#showRoomResume").append("<input type='submit' class='btn btn-primary' value='Confirmar'>");
         $("#showRoomResume").append("<button style='margin-left: 1%' id = 'discard' type='button'  class='btn btn-primary' >Descartar</button>");
 
 

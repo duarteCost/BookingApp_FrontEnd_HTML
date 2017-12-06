@@ -1,22 +1,44 @@
 function get_all_user_booking(){
     return $.ajax({
-        url: "http://127.0.0.1:5000/bookings/1 ",
+        url: "http://127.0.0.1:5003/bookings/currentUser",
         method: "GET",
-        data: true
+        data: true,
+        beforeSend: function (xhr) {
+            /* Authorization header */
+            xhr.setRequestHeader("Authorization", getCookie("token"));
+        }
     });
 }
 
 function get_room_by_id(id) {
     return $.ajax({
-        url: "http://127.0.0.1:5001/rooms/"+id,
+        url: "http://127.0.0.1:5004/rooms/"+id,
         method: "GET",
-        data: true
+        data: true,
+        beforeSend: function (xhr) {
+            /* Authorization header */
+            xhr.setRequestHeader("Authorization", getCookie("token"));
+        }
     });
 }
 
-
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 function showUserBookings(data) {
+
 
     $.each( data, function( key, value ) {
 
@@ -32,7 +54,7 @@ function showUserBookings(data) {
 
             $("#userBookings").append("</ul>");
             $("#userBookings").append("<br>");
-            $("#userBookings").append(" <div class='btn-group' role='group' aria-label='Basic example'><button id = "+value._id.$oid+" type='button' class='btn btn-secondary'>Eliminar</button></div>");
+            $("#userBookings").append(" <div class='btn-group deleteBooking' role='group' aria-label='Basic example'><button id = "+value._id.$oid+" type='button' class='btn btn-secondary'>Eliminar</button></div>");
             $("#userBookings").append("<br>");
             $("#userBookings").append("<br>");
         });
@@ -42,17 +64,25 @@ function showUserBookings(data) {
 
 $( document ).ready(function() {
 
+    if(getCookie("token") === '')
+    {
+        alert("Para aceder a esta página é necessário realizar o Login");
+        location.replace('login.html');
+    }
     $.support.cors = true;
-
+    console.log(getCookie("token"));
     get_all_user_booking().done(function(data) {
-        getUserBookings = data;
-        showUserBookings(getUserBookings);
+        showUserBookings(data);
         console.log(data);
-        $(".btn-group").click(function (event) {
+        $("#userBookings").on('click', '.deleteBooking', function() {
             $.ajax({
-                url: "http://127.0.0.1:5000/booking/"+event.target.id,
+                url: "http://127.0.0.1:5003/booking/"+event.target.id,
                 method: "DELETE",
                 data: true,
+                beforeSend: function (xhr) {
+                    /* Authorization header */
+                    xhr.setRequestHeader("Authorization", getCookie("token"));
+                },
                 success: function (data) {
                     console.log('Submission was successful.');
                     console.log(data);
