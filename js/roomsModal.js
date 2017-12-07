@@ -15,7 +15,7 @@ function getCookie(cname) {
 
 
 //get available rooms in one floor
-function get_floor_available_rooms(floor){
+function get_floor_available_rooms(floor, startTime, endTime ){
     return $.ajax({
         url: "http://127.0.0.1:5004/rooms/floor/"+floor,
         method: "GET",
@@ -23,6 +23,8 @@ function get_floor_available_rooms(floor){
         beforeSend: function (xhr) {
             /* Authorization header */
             xhr.setRequestHeader("Authorization", getCookie("token"));
+            xhr.setRequestHeader("startTime", startTime);
+            xhr.setRequestHeader("endTime", endTime);
         }
     });
 }
@@ -69,6 +71,7 @@ $( document ).ready(function() {
     var data_rooms;
     //if user click "Escolher sala" in bookings form
     $("#chooseRoom").click(function () {
+
         var startTime = $("#startTime").val();
         var endTime = $("#endTime").val();
         var descritption = $("#description").val();
@@ -79,8 +82,9 @@ $( document ).ready(function() {
     //inside of modal when user choose a pretended floor
     $(".floor").click(function () {
         var floor = $(this).prop('name');
-
-        get_floor_available_rooms(floor).done(function(data) {
+        var startTime = $("#startTime").val();
+        var endTime = $("#endTime").val();
+        get_floor_available_rooms(floor, startTime, endTime ).done(function(data) {
             data_rooms = data;
             list_room_per_floor(data);
         });
