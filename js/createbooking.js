@@ -29,7 +29,7 @@ $( document ).ready(function() {
         e.preventDefault();
         $.ajax({
             method: "PUT",
-            url: "http://127.0.0.1:5003/booking",
+            url: "http://127.0.0.1:5011/booking_service/booking",
             data: $(this).serializeArray(),
             beforeSend: function (xhr) {
                 /* Authorization header */

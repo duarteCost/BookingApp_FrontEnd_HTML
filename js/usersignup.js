@@ -38,7 +38,7 @@ $(document).ready(function(){
         }
         $.ajax({
             method: "POST",
-            url: "http://127.0.0.1:5000/user/register",
+            url: "http://127.0.0.1:5011/user_service/user/register",
             data: $(this).serializeArray(),
             success: function (data) {
                 console.log('Submission was successful.');

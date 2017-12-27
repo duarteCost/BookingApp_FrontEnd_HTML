@@ -28,14 +28,14 @@ $(document).ready(function(){
         e.preventDefault();
         $.ajax({
             method: "POST",
-            url: "http://127.0.0.1:5000/user/login",
+            url: "http://127.0.0.1:5011/user_service/user/login",
             data: $(this).serializeArray(),
             success: function (data) {
                 console.log('Submission was successful.');
                 console.log(data);
                 setCookie("token", data.token, 0.01);
                 console.log(getCookie("token"));
-                location.replace('index.html');
+                location.replace('listbooking.html');
             },
             error: function (data) {
                 $('#error-message').html('O email e/ou password introduzidos estão incorrectos.');

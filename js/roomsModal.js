@@ -17,7 +17,7 @@ function getCookie(cname) {
 //get available rooms in one floor
 function get_floor_available_rooms(floor, startTime, endTime ){
     return $.ajax({
-        url: "http://127.0.0.1:5004/rooms/floor/"+floor,
+        url: "http://127.0.0.1:5011/room_service/rooms/floor/"+floor,
         method: "GET",
         data: true,
         beforeSend: function (xhr) {
