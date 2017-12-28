@@ -20,7 +20,7 @@ $( document ).ready(function() {
         alert("Para aceder a esta página é necessário realizar o Login");
         location.replace('login.html');
     }
-
+    $('#username').html(getCookie("stdentNumber"));
     $("#showRoomResume").on('click', '#discard', function() {
         location.reload();
     });

@@ -69,6 +69,7 @@ $( document ).ready(function() {
         alert("Para aceder a esta página é necessário realizar o Login");
         location.replace('login.html');
     }
+    $('#username').html(getCookie("stdentNumber"));
     $.support.cors = true;
     console.log(getCookie("token"));
     get_all_user_booking().done(function(data) {

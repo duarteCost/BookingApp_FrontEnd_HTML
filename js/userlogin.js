@@ -20,11 +20,18 @@ function getCookie(cname) {
     return "";
 }
 
+function getStudenNumber(){
+    var email = $("[name='email']").val();
+    var arr = email.split('@');
+    return arr[0];
+}
+
 $(document).ready(function(){
     $.support.cors = true;
 
     //Register Form Handler
     $('#login-form').submit(function signup(e){
+        var studenNumber = getStudenNumber();
         e.preventDefault();
         $.ajax({
             method: "POST",
@@ -33,8 +40,10 @@ $(document).ready(function(){
             success: function (data) {
                 console.log('Submission was successful.');
                 console.log(data);
-                setCookie("token", data.token, 0.01);
+                setCookie("token", data.token, 0.5);
+                setCookie("stdentNumber", studenNumber, 0.5);
                 console.log(getCookie("token"));
+                console.log(getCookie("stdentNumber"));
                 location.replace('listbooking.html');
             },
             error: function (data) {

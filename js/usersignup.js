@@ -13,6 +13,7 @@ function validateEmail(){
     }
 }
 
+
 function validatePassword(){
     var password = $("[name='password']").val();
     var confirm = $("[name='confirm-password']").val();
