@@ -40,13 +40,13 @@ $( document ).ready(function() {
                 console.log('Submission was successful.');
                 console.log(data);
                 alert(data.responseText);
-                location.reload();
+                location.replace('listbooking.html');
             },
             error: function (data) {
                 console.log('An error occurred.');
                 console.log(data);
                 alert(data.responseText);
-                location.reload();
+                location.replace('listbooking.html');
             }
         });
     });
